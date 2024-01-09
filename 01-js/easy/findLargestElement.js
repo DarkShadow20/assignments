@@ -6,7 +6,15 @@
 */
 
 function findLargestElement(numbers) {
-    
+    let currMax=Number.NEGATIVE_INFINITY
+    if(numbers.length){
+    for (let i=0;i<numbers.length;i++){
+        if(currMax<numbers[i]){
+            currMax=numbers[i]
+        }
+    }
+    return currMax
+    }
+    return ;
 }
-
 module.exports = findLargestElement;

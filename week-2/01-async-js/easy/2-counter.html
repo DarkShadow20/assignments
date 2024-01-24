@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Time-based Counter</title>
+    </head>
+    <body>
+        <h1 id="counter">0</h1>
+
+        <script>
+            function updateCounter (){
+                let currentValue = parseInt(document.getElementById("counter").innerText)
+
+                currentValue++
+                document.getElementById("counter").innerHTML = currentValue
+                setTimeout(updateCounter,1000)
+            }
+            updateCounter()
+        </script>
+    </body>
+</html>

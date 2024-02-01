@@ -16,6 +16,35 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const app = express();
+const port = 3001;
 
+app.get('/files', (req, res) => {
+  fs.readdir('./files/', (err, files) => {
+    if (err) {
+      //console.error('Error reading files:', err);
+      res.status(500).send('Internal Server Error');
+    } else {
+      res.status(200).send(files);
+    }
+  });
+});
 
+app.get('/file/:fileName',(req,res)=>{
+  const {fileName} = req.params;
+  fs.readFile(`./files/${fileName}`,"utf-8",function(err,filesContent){
+    if(err){
+      res.status(404).send("File not found")
+    }else{
+      res.status(200).send(filesContent)
+    }
+  })
+})
+
+app.use((req,res)=>{
+  res.status(404).send("Route not found");
+})
+
+app.listen(port,()=>{
+  console.log(`Listening on ${port}`)
+})
 module.exports = app;
